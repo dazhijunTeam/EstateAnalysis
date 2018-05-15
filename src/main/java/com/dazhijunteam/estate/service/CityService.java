@@ -12,4 +12,6 @@ public interface CityService {
     CityEntity getByCityId(String s);
 
     List<CityEntity> findAll();
+
+    CityEntity save(CityEntity cityEntity);
 }

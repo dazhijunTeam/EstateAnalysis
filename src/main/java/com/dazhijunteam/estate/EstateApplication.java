@@ -9,6 +9,13 @@ import org.springframework.scheduling.annotation.Scheduled;
 @EnableScheduling
 public class EstateApplication {
 
+	public void a(){
+
+	}
+
+	public void b(){
+		a();
+	}
 	public static void main(String[] args) {
 		SpringApplication.run(EstateApplication.class, args);
 	}

@@ -23,5 +23,10 @@ public class CityServiceImpl implements CityService{
         return repository.findAll();
     }
 
+    @Override
+    public CityEntity save(CityEntity cityEntity) {
+        return repository.save(cityEntity);
+    }
+
 
 }

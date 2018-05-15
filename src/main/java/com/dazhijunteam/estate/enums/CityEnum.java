@@ -2,10 +2,9 @@ package com.dazhijunteam.estate.enums;
 
 import lombok.Data;
 
-
 public enum CityEnum {
-    BEIJING("1", "BJ"),
-    TIANJIN("2", "TJ"),
+    BEIJING("1", "bj"),
+    TIANJIN("2", "tj"),
     LANGFANG("3", "LF"),
     SHIJIAZHUANG("4", "SJZ"),
     TAIYUAN("5", "TY"),
@@ -42,7 +41,7 @@ public enum CityEnum {
     ZHONGSHAN("36", "ZS"),
     JIANGMEN("37", "JM"),
     NANNING("38", "NN"),
-    NANCHANG("39", "NC"),
+    NANCHANG("39", "nc"),
     HAIKOU("40", "HK"),
     CHENGDU("41", "CD"),
     CHONGQING("42", "CQ"),
@@ -58,8 +57,8 @@ public enum CityEnum {
     XUCHANG("52", "XC"),
     YICHANG("53", "YC");
 
-    private String code;
-    private String cityFirst;
+    public String code;
+    public String cityFirst;
 
     CityEnum(String code, String cityFirst) {
         this.code = code;
