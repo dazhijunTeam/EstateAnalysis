@@ -27,12 +27,13 @@ public class CityServiceImplTest {
     }
 
     @Test
-    public void savecity(){
+    public void savecity() throws InterruptedException {
         CityEntity cityEntity=new CityEntity();
         for(CityEnum cityEnum:CityEnum.values()){
             cityEntity.setCityFirst(cityEnum.cityFirst);
             cityEntity.setCityId(cityEnum.code);
             cityService.save(cityEntity);
+            Thread.sleep(10);
         }
     }
 }

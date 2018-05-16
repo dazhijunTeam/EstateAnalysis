@@ -67,6 +67,12 @@
 			<artifactId>gson</artifactId>
 		</dependency>
 
+		<!--引入freemarker模板-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-freemarker</artifactId>
+		</dependency>
+
 		<!--jsoup-->
 		<dependency>
 			<groupId>org.jsoup</groupId>

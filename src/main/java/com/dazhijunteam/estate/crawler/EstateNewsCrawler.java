@@ -32,7 +32,7 @@ import java.util.List;
 public class EstateNewsCrawler {
     private static int maxsize=1000;
     private static HashMap<String,String> citys=new HashMap<>();
-
+    private static int flag=0;
     @Autowired
     private NewsService service;
 
@@ -58,8 +58,6 @@ public class EstateNewsCrawler {
             HotNewsVo<List<NewsCrawlerBean>> hotNewsVo = gson.fromJson(json, type);
             saveAll(hotNewsVo.getList(),code);
         }
-
-
     }
 
     public void saveAll(List<NewsCrawlerBean> newsCrawlerBeans,String cityId){
@@ -79,6 +77,7 @@ public class EstateNewsCrawler {
             }
             String newscontent = content.select("div.news-mod").html();
             newsEntity.setNewsContent(newscontent);
+            System.out.println(flag++);
             service.save(newsEntity);
         }
     }
@@ -97,15 +96,5 @@ public class EstateNewsCrawler {
         Type type = new TypeToken<HotNewsVo<List<NewsCrawlerBean>>>(){}.getType();
         HotNewsVo<List<NewsCrawlerBean>> hotNewsVo = gson.fromJson(json, type);
         return hotNewsVo.getTotal()/20;
-    }
-
-    public static void main(String[] args){
-        int a=0;
-        try {
-            a=10;
-        }catch (Exception e){
-
-        }
-        System.out.println(a);
     }
 }
