@@ -1,6 +1,7 @@
 package com.dazhijunteam.estate;
 
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -9,13 +10,6 @@ import org.springframework.scheduling.annotation.Scheduled;
 @EnableScheduling
 public class EstateApplication {
 
-	public void a(){
-
-	}
-
-	public void b(){
-		a();
-	}
 	public static void main(String[] args) {
 		SpringApplication.run(EstateApplication.class, args);
 	}

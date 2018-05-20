@@ -8,8 +8,9 @@ import com.dazhijunteam.estate.enums.CityEnum;
 import com.dazhijunteam.estate.service.NewsService;
 import com.dazhijunteam.estate.util.KeyUtil;
 import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
-import org.hibernate.query.criteria.internal.expression.function.AggregationFunction;
+import lombok.extern.slf4j.Slf4j;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -29,6 +30,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/estate")
+@Slf4j
 public class EstateNewsCrawler {
     private static int maxsize=1000;
     private static HashMap<String,String> citys=new HashMap<>();
@@ -37,27 +39,42 @@ public class EstateNewsCrawler {
     private NewsService service;
 
     @RequestMapping("/craw")
-    public void crawlerHotNews(@RequestParam(name = "code") String code) {
+    public void crawlerHotNews() {
         for(CityEnum cityEnum:CityEnum.values()){
             citys.put(cityEnum.code,cityEnum.cityFirst);
         }
-        String hoturl = AjkNewsTemplate.HOTNEWSTEMPLATEURL.getMessage();
-        maxsize=testMaxsize(hoturl);
-        Document doc=null;
-        for (int i=2;i<maxsize;i++){
-            hoturl=hoturl.replace("%s",citys.get(code));
-            hoturl=hoturl.replace("%p", i+"");
-            try {
-                doc = Jsoup.connect(hoturl).get();
-            } catch (IOException e) {
-                e.printStackTrace();
+        String hoturl = null;
+        for(CityEnum cityEnum:CityEnum.values()){
+            if (cityEnum.code.equals("1")||cityEnum.code.equals("2")||cityEnum.code.equals("3")){
+                continue;
             }
-            String json = doc.text();
-            Gson gson = new Gson();
-            Type type = new TypeToken<HotNewsVo<List<NewsCrawlerBean>>>(){}.getType();
-            HotNewsVo<List<NewsCrawlerBean>> hotNewsVo = gson.fromJson(json, type);
-            saveAll(hotNewsVo.getList(),code);
+            hoturl = AjkNewsTemplate.HOTNEWSTEMPLATEURL.getMessage();
+            maxsize=testMaxsize(hoturl,cityEnum.code);
+            Document doc=null;
+            for (int i=1;i<maxsize;i++){
+                hoturl = AjkNewsTemplate.HOTNEWSTEMPLATEURL.getMessage();
+                hoturl=hoturl.replace("%s",citys.get(cityEnum.code));
+                hoturl=hoturl.replace("%p", i+"");
+                System.out.println(hoturl);
+                try {
+                    doc = Jsoup.connect(hoturl).get();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                String json = doc.text();
+                Gson gson = new Gson();
+                Type type = new TypeToken<HotNewsVo<List<NewsCrawlerBean>>>(){}.getType();
+                HotNewsVo<List<NewsCrawlerBean>> hotNewsVo;
+                try {
+                    hotNewsVo = gson.fromJson(json, type);
+                }catch (JsonSyntaxException e){
+                    System.out.println("失败一次");
+                    continue;
+                }
+                saveAll(hotNewsVo.getList(),cityEnum.code);
+            }
         }
+
     }
 
     public void saveAll(List<NewsCrawlerBean> newsCrawlerBeans,String cityId){
@@ -69,7 +86,14 @@ public class EstateNewsCrawler {
             newsEntity.setNewsId(KeyUtil.genUniqueKey());
             newsEntity.setNewsCityid(cityId);
             newsEntity.setNewsTypeid("3");
-            newsEntity.setNewsData(Date.valueOf(newsCrawlerBean.getNewsData()));
+            Date date=null;
+            try {
+                date=Date.valueOf(newsCrawlerBean.getNewsData());
+            }
+            catch (IllegalArgumentException e){
+                date=Date.valueOf("2020-1-1");
+            }
+            newsEntity.setNewsData(date);
             try {
                 content = Jsoup.connect(newsCrawlerBean.getNews_url()).get();
             } catch (IOException e) {
@@ -77,13 +101,15 @@ public class EstateNewsCrawler {
             }
             String newscontent = content.select("div.news-mod").html();
             newsEntity.setNewsContent(newscontent);
-            System.out.println(flag++);
+            if ((flag++)%1000==0){
+                System.out.println("*************flag="+flag+"*************");
+            }
             service.save(newsEntity);
         }
     }
 
-    public static int testMaxsize(String url){
-        url=url.replace("%s","nc");
+    public static int testMaxsize(String url,String code){
+        url=url.replace("%s",citys.get(code));
         url=url.replace("%p", maxsize+"");
         Document doc=null;
         try {
@@ -95,6 +121,8 @@ public class EstateNewsCrawler {
         Gson gson = new Gson();
         Type type = new TypeToken<HotNewsVo<List<NewsCrawlerBean>>>(){}.getType();
         HotNewsVo<List<NewsCrawlerBean>> hotNewsVo = gson.fromJson(json, type);
+        System.out.println("当城市code为"+code+"时，一共有"+hotNewsVo.getTotal()+"条数据，分成"+hotNewsVo.getTotal()/20+"页,共"+((hotNewsVo.getTotal()/20)*20-20)+"条数据");
+        log.error("当城市code为"+code+"时，一共有"+hotNewsVo.getTotal()+"条数据，分成"+hotNewsVo.getTotal()/20+"页,共"+((hotNewsVo.getTotal()/20)*20-20)+"条数据");
         return hotNewsVo.getTotal()/20;
     }
 }

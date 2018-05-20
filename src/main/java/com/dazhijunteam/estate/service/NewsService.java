@@ -10,4 +10,8 @@ public interface NewsService {
     NewsEntity save(NewsEntity newsEntity);
 
     Page<NewsEntity> findList(Pageable pageable);
+
+    Page<NewsEntity> findListByCityId(Pageable pageable,String cityId);
+
+    NewsEntity findByNewsId(String newsId);
 }

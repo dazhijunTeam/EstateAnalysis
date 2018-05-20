@@ -25,4 +25,14 @@ public class NewsServiceImpl implements NewsService{
     public Page<NewsEntity> findList(Pageable pageable) {
         return repository.findAll(pageable);
     }
+
+    @Override
+    public Page<NewsEntity> findListByCityId(Pageable pageable,String cityId) {
+        return repository.findListByNewsCityid(pageable,cityId);
+    }
+
+    @Override
+    public NewsEntity findByNewsId(String newsId) {
+        return repository.findOne(newsId);
+    }
 }

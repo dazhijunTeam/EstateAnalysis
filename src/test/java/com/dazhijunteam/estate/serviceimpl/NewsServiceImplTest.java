@@ -4,6 +4,7 @@ import com.dazhijunteam.estate.VO.HotNewsVo;
 import com.dazhijunteam.estate.crawlerbean.NewsCrawlerBean;
 import com.dazhijunteam.estate.dataobject.NewsEntity;
 import com.dazhijunteam.estate.enums.AjkNewsTemplate;
+import com.dazhijunteam.estate.repository.NewsRepository;
 import com.dazhijunteam.estate.service.NewsService;
 import com.dazhijunteam.estate.util.KeyUtil;
 import com.google.gson.Gson;
@@ -31,6 +32,10 @@ public class NewsServiceImplTest {
 
     @Autowired
     private NewsService service;
+
+    @Autowired
+    private NewsRepository repository;
+
     @Test
     public void save() {
         NewsEntity ne=new NewsEntity();
@@ -69,5 +74,12 @@ public class NewsServiceImplTest {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @Test
+    public void ss(){
+       // NewsEntity ne=repository.getOne("1526532027384212964");//若不存在则报错
+        NewsEntity ne1=repository.findOne("1526532027384212965");//若不存在则为null
+        //NewsEntity ne2=repository.findByNewsId("1526532027384212964");
     }
 }
