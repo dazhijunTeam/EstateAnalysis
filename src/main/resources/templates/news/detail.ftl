@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>${newsEntity.getNewsTitle()}</title>
+    <#include "../common/links.ftl">
 </head>
 <body>
     <div class="container">

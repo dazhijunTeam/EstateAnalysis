@@ -1,12 +1,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title></title>
-    <link rel="stylesheet" href="/EstateAnalysis/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/EstateAnalysis/js/bootstrap.min.js"
+    <title>楼市快讯</title>
+    <#include "../common/links.ftl">
 </head>
 <body>
+
     <div class="container">
+    <#include "../common/nav.ftl">
     <div class="row clearfix">
         <div class="col-md-12 column">
             <ul class="nav nav-tabs">

@@ -19,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -27,7 +28,10 @@ import java.lang.reflect.Type;
 import java.sql.Date;
 import java.util.HashMap;
 import java.util.List;
-
+/*
+auth:大志君
+desc:到网上爬取楼市讯息的关键爬虫类
+ */
 @Controller
 @RequestMapping("/estate")
 @Slf4j
@@ -38,7 +42,7 @@ public class EstateNewsCrawler {
     @Autowired
     private NewsService service;
 
-    @RequestMapping("/craw")
+    @GetMapping("/craw")
     public void crawlerHotNews() {
         for(CityEnum cityEnum:CityEnum.values()){
             citys.put(cityEnum.code,cityEnum.cityFirst);

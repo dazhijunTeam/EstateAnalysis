@@ -7,8 +7,8 @@ import lombok.Getter;
 public enum AjkNewsTemplate {
 
     //https://%s.news.anjuke.com/toutiao/ajax/toutiaoajax/?page=%p&type=%t
-    HOTNEWSTEMPLATEURL(0,"https://%s.news.anjuke.com/toutiao/ajax/toutiaoajax/?page=%p&type=3"),
-    SPECIALNEWSTEMPLATEURL(1,"https://%s.news.anjuke.com/topic/?from=leading_navi_topic");
+    HOTNEWSTEMPLATEURL(0,"https://%s.news.anjuke.com/toutiao/ajax/toutiaoajax/?page=%p&type=3");
+
 
     private Integer code;
     private String message;
