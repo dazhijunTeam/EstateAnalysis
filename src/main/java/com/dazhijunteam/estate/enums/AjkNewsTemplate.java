@@ -7,13 +7,16 @@ import lombok.Getter;
 public enum AjkNewsTemplate {
 
     //https://%s.news.anjuke.com/toutiao/ajax/toutiaoajax/?page=%p&type=%t
-    HOTNEWSTEMPLATEURL(0,"https://%s.news.anjuke.com/toutiao/ajax/toutiaoajax/?page=%p&type=3");
+    HOTNEWSTEMPLATEURL(0,"https://%s.news.anjuke.com/toutiao/ajax/toutiaoajax/?page=%p&type=3"),
+    COMMUNITYURL(1,"https://%s.fang.anjuke.com/loupan/%d"),
 
+    COMMUNITYURL2(2,"https://%s.fang.anjuke.com/loupan/%d/p%n/");
+    //%s表示城市简写,%d表示区号简写,%n表示页数
 
     private Integer code;
     private String message;
 
-    AjkNewsTemplate(int code,String message){
+    AjkNewsTemplate(int code,String message ){
         this.code=code;
         this.message=message;
     }

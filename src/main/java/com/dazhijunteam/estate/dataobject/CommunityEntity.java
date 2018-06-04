@@ -1,9 +1,6 @@
 package com.dazhijunteam.estate.dataobject;
 
 import javax.persistence.*;
-import java.math.BigDecimal;
-import java.sql.Date;
-import java.sql.Timestamp;
 import java.util.Objects;
 
 @Entity
@@ -11,20 +8,18 @@ import java.util.Objects;
 public class CommunityEntity {
     private String communityId;
     private String communityName;
-    private String communityComment;
+    private String communityAddress;
     private String communityDistrictid;
-    private String communityDeveloper;
-    private Timestamp communityBuildDate;
-    private Integer communityProperty;
-    private String communityHousetypeid;
+    private String communityTypeandsize;
     private String communityPhone;
-    private BigDecimal communityAverageprice;
-    private String communityLabel;
+    private Integer communityAvprice;
+    private String communityPriceinfo;
     private String communityHousetype;
-    private String communityArea;
-    private Date communityOpen;
-    private Date communityGived;
-    private String communityTypecomm;
+    private Integer communityTotalprice;
+    private String communityImage;
+    private String communityInfourl;
+    private Integer communityLowprice;
+    private Byte isCheap=0;
 
     @Id
     @Column(name = "community_id", nullable = false, length = 30)
@@ -37,7 +32,7 @@ public class CommunityEntity {
     }
 
     @Basic
-    @Column(name = "community_name", nullable = true, length = 10)
+    @Column(name = "community_name", nullable = true, length = 50)
     public String getCommunityName() {
         return communityName;
     }
@@ -47,13 +42,13 @@ public class CommunityEntity {
     }
 
     @Basic
-    @Column(name = "community_comment", nullable = true, length = 255)
-    public String getCommunityComment() {
-        return communityComment;
+    @Column(name = "community_address", nullable = true, length = 255)
+    public String getCommunityAddress() {
+        return communityAddress;
     }
 
-    public void setCommunityComment(String communityComment) {
-        this.communityComment = communityComment;
+    public void setCommunityAddress(String communityAddress) {
+        this.communityAddress = communityAddress;
     }
 
     @Basic
@@ -67,43 +62,13 @@ public class CommunityEntity {
     }
 
     @Basic
-    @Column(name = "community_developer", nullable = true, length = 30)
-    public String getCommunityDeveloper() {
-        return communityDeveloper;
+    @Column(name = "community_typeandsize", nullable = false, length = 30)
+    public String getCommunityTypeandsize() {
+        return communityTypeandsize;
     }
 
-    public void setCommunityDeveloper(String communityDeveloper) {
-        this.communityDeveloper = communityDeveloper;
-    }
-
-    @Basic
-    @Column(name = "community_build_date", nullable = true)
-    public Timestamp getCommunityBuildDate() {
-        return communityBuildDate;
-    }
-
-    public void setCommunityBuildDate(Timestamp communityBuildDate) {
-        this.communityBuildDate = communityBuildDate;
-    }
-
-    @Basic
-    @Column(name = "community_property", nullable = true)
-    public Integer getCommunityProperty() {
-        return communityProperty;
-    }
-
-    public void setCommunityProperty(Integer communityProperty) {
-        this.communityProperty = communityProperty;
-    }
-
-    @Basic
-    @Column(name = "community_housetypeid", nullable = false, length = 30)
-    public String getCommunityHousetypeid() {
-        return communityHousetypeid;
-    }
-
-    public void setCommunityHousetypeid(String communityHousetypeid) {
-        this.communityHousetypeid = communityHousetypeid;
+    public void setCommunityTypeandsize(String communityTypeandsize) {
+        this.communityTypeandsize = communityTypeandsize;
     }
 
     @Basic
@@ -117,23 +82,23 @@ public class CommunityEntity {
     }
 
     @Basic
-    @Column(name = "community_averageprice", nullable = true, precision = 2)
-    public BigDecimal getCommunityAverageprice() {
-        return communityAverageprice;
+    @Column(name = "community_avprice", nullable = true)
+    public Integer getCommunityAvprice() {
+        return communityAvprice;
     }
 
-    public void setCommunityAverageprice(BigDecimal communityAverageprice) {
-        this.communityAverageprice = communityAverageprice;
+    public void setCommunityAvprice(Integer communityAvprice) {
+        this.communityAvprice = communityAvprice;
     }
 
     @Basic
-    @Column(name = "community_label", nullable = false, length = 60)
-    public String getCommunityLabel() {
-        return communityLabel;
+    @Column(name = "community_priceinfo", nullable = false, length = 60)
+    public String getCommunityPriceinfo() {
+        return communityPriceinfo;
     }
 
-    public void setCommunityLabel(String communityLabel) {
-        this.communityLabel = communityLabel;
+    public void setCommunityPriceinfo(String communityPriceinfo) {
+        this.communityPriceinfo = communityPriceinfo;
     }
 
     @Basic
@@ -147,43 +112,53 @@ public class CommunityEntity {
     }
 
     @Basic
-    @Column(name = "community_area", nullable = true, length = 50)
-    public String getCommunityArea() {
-        return communityArea;
+    @Column(name = "community_totalprice", nullable = true)
+    public Integer getCommunityTotalprice() {
+        return communityTotalprice;
     }
 
-    public void setCommunityArea(String communityArea) {
-        this.communityArea = communityArea;
-    }
-
-    @Basic
-    @Column(name = "community_open", nullable = true)
-    public Date getCommunityOpen() {
-        return communityOpen;
-    }
-
-    public void setCommunityOpen(Date communityOpen) {
-        this.communityOpen = communityOpen;
+    public void setCommunityTotalprice(Integer communityTotalprice) {
+        this.communityTotalprice = communityTotalprice;
     }
 
     @Basic
-    @Column(name = "community_gived", nullable = true)
-    public Date getCommunityGived() {
-        return communityGived;
+    @Column(name = "community_image", nullable = true, length = 255)
+    public String getCommunityImage() {
+        return communityImage;
     }
 
-    public void setCommunityGived(Date communityGived) {
-        this.communityGived = communityGived;
+    public void setCommunityImage(String communityImage) {
+        this.communityImage = communityImage;
     }
 
     @Basic
-    @Column(name = "community_typecomm", nullable = true, length = 50)
-    public String getCommunityTypecomm() {
-        return communityTypecomm;
+    @Column(name = "community_infourl", nullable = true, length = 100)
+    public String getCommunityInfourl() {
+        return communityInfourl;
     }
 
-    public void setCommunityTypecomm(String communityTypecomm) {
-        this.communityTypecomm = communityTypecomm;
+    public void setCommunityInfourl(String communityInfourl) {
+        this.communityInfourl = communityInfourl;
+    }
+
+    @Basic
+    @Column(name = "community_lowprice", nullable = true)
+    public Integer getCommunityLowprice() {
+        return communityLowprice;
+    }
+
+    public void setCommunityLowprice(Integer communityLowprice) {
+        this.communityLowprice = communityLowprice;
+    }
+
+    @Basic
+    @Column(name = "is_cheap", nullable = false)
+    public Byte getIsCheap() {
+        return isCheap;
+    }
+
+    public void setIsCheap(Byte isCheap) {
+        this.isCheap = isCheap;
     }
 
     @Override
@@ -193,25 +168,23 @@ public class CommunityEntity {
         CommunityEntity that = (CommunityEntity) o;
         return Objects.equals(communityId, that.communityId) &&
                 Objects.equals(communityName, that.communityName) &&
-                Objects.equals(communityComment, that.communityComment) &&
+                Objects.equals(communityAddress, that.communityAddress) &&
                 Objects.equals(communityDistrictid, that.communityDistrictid) &&
-                Objects.equals(communityDeveloper, that.communityDeveloper) &&
-                Objects.equals(communityBuildDate, that.communityBuildDate) &&
-                Objects.equals(communityProperty, that.communityProperty) &&
-                Objects.equals(communityHousetypeid, that.communityHousetypeid) &&
+                Objects.equals(communityTypeandsize, that.communityTypeandsize) &&
                 Objects.equals(communityPhone, that.communityPhone) &&
-                Objects.equals(communityAverageprice, that.communityAverageprice) &&
-                Objects.equals(communityLabel, that.communityLabel) &&
+                Objects.equals(communityAvprice, that.communityAvprice) &&
+                Objects.equals(communityPriceinfo, that.communityPriceinfo) &&
                 Objects.equals(communityHousetype, that.communityHousetype) &&
-                Objects.equals(communityArea, that.communityArea) &&
-                Objects.equals(communityOpen, that.communityOpen) &&
-                Objects.equals(communityGived, that.communityGived) &&
-                Objects.equals(communityTypecomm, that.communityTypecomm);
+                Objects.equals(communityTotalprice, that.communityTotalprice) &&
+                Objects.equals(communityImage, that.communityImage) &&
+                Objects.equals(communityInfourl, that.communityInfourl) &&
+                Objects.equals(communityLowprice, that.communityLowprice) &&
+                Objects.equals(isCheap, that.isCheap);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(communityId, communityName, communityComment, communityDistrictid, communityDeveloper, communityBuildDate, communityProperty, communityHousetypeid, communityPhone, communityAverageprice, communityLabel, communityHousetype, communityArea, communityOpen, communityGived, communityTypecomm);
+        return Objects.hash(communityId, communityName, communityAddress, communityDistrictid, communityTypeandsize, communityPhone, communityAvprice, communityPriceinfo, communityHousetype, communityTotalprice, communityImage, communityInfourl, communityLowprice, isCheap);
     }
 }

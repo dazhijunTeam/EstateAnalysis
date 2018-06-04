@@ -11,17 +11,17 @@ import static org.junit.Assert.*;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
 @Slf4j
-public class CityRepositoryTest {
+public class CommunityRepositoryTest {
 
     @Autowired
-    private CityRepository repository;
+    private CommunityRepository communityRepository;
 
     @Test
-    public void getByCityId() {
-        System.out.println(repository.findOne("1").getCityName().length());
-    }
-
-    @Test
-    public void getOne() {
+    public void findByCommunityDistrictid() {
+        for (int i=1;i<=123;i++){
+            if (communityRepository.findByCommunityDistrictid(i+"").size()==0){
+                System.out.println(i+"==null");
+            }
+        }
     }
 }

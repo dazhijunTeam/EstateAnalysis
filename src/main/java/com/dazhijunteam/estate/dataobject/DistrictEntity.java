@@ -9,6 +9,7 @@ public class DistrictEntity {
     private String districtId;
     private String districtName;
     private String districtCityid;
+    private String districtEname;
 
     @Id
     @Column(name = "district_id", nullable = false, length = 30)
@@ -40,6 +41,16 @@ public class DistrictEntity {
         this.districtCityid = districtCityid;
     }
 
+    @Basic
+    @Column(name = "district_ename", nullable = true, length = 20)
+    public String getDistrictEname() {
+        return districtEname;
+    }
+
+    public void setDistrictEname(String districtEname) {
+        this.districtEname = districtEname;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -47,12 +58,13 @@ public class DistrictEntity {
         DistrictEntity that = (DistrictEntity) o;
         return Objects.equals(districtId, that.districtId) &&
                 Objects.equals(districtName, that.districtName) &&
-                Objects.equals(districtCityid, that.districtCityid);
+                Objects.equals(districtCityid, that.districtCityid) &&
+                Objects.equals(districtEname, that.districtEname);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(districtId, districtName, districtCityid);
+        return Objects.hash(districtId, districtName, districtCityid, districtEname);
     }
 }
