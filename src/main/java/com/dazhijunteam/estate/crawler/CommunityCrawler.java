@@ -50,81 +50,113 @@ public class CommunityCrawler {
             new Thread(crawThread).start();
         }
 
+    }
 
-
+    @GetMapping("/crawhot")
+    public void Allcrawhot(){
+        List<CityEntity> cityEntities=cityService.findAll();
+        for (CityEntity cityEntity:cityEntities){
+            crawhotThread crawThread = new crawhotThread(cityEntity);
+            new Thread(crawThread).start();
+        }
 
     }
 
-    private class crawThread implements Runnable{
+    private class crawhotThread implements Runnable{
         private CityEntity cityEntity;
 
-        public crawThread(CityEntity cityEntity){
+        public crawhotThread(CityEntity cityEntity){
             this.cityEntity=cityEntity;
         }
 
         @Override
         public void run() {
-            List<DistrictEntity> districtEntities=districtService.getByDistrictCityid(cityEntity.getCityId());
-            for (DistrictEntity districtEntity:districtEntities){
-                System.out.println("在"+cityEntity.getCityName()+"这个城市爬取"+districtEntity.getDistrictEname()+"的房产信息");
-                String testUrl=communityUrl;
-                testUrl=testUrl.replace("%s",cityEntity.getCityFirst());
-                testUrl=testUrl.replace("%d",districtEntity.getDistrictEname());
+
+
+                for (int i=1;i<=1;i++){
+                    String thisUrl=AjkNewsTemplate.COMMUNITYHOTURL.getMessage();
+
+                    thisUrl=thisUrl.replace("%s",cityEntity.getCityFirst());
+
+                    System.out.println("thisUrl="+thisUrl+"cityId="+cityEntity.getCityId()+"disId="+districtService.getdistrictIdByCityId(cityEntity.getCityId()).get(1));
+                    //System.out.println("开始爬"+thisUrl+"里面的内容");
+                    craw(thisUrl,districtService.getdistrictIdByCityId(cityEntity.getCityId()).get(1));
+
+                }
+
+            }
+
+    }
+
+    private class crawThread implements Runnable {
+        private CityEntity cityEntity;
+
+        public crawThread(CityEntity cityEntity) {
+            this.cityEntity = cityEntity;
+        }
+
+        @Override
+        public void run() {
+            List<DistrictEntity> districtEntities = districtService.getByDistrictCityid(cityEntity.getCityId());
+            for (DistrictEntity districtEntity : districtEntities) {
+                System.out.println("在" + cityEntity.getCityName() + "这个城市爬取" + districtEntity.getDistrictEname() + "的房产信息");
+                String testUrl = communityUrl;
+                testUrl = testUrl.replace("%s", cityEntity.getCityFirst());
+                testUrl = testUrl.replace("%d", districtEntity.getDistrictEname());
                 //testUrl=testUrl.replace("%n","1");
 
-                Document document=null;
+                Document document = null;
                 try {
-                    document= Jsoup.connect(testUrl).timeout(30000).get();
+                    document = Jsoup.connect(testUrl).timeout(30000).get();
                 } catch (IOException e) {
                     e.printStackTrace();
-                }if (document==null){
+                }
+                if (document == null) {
                     try {
-                        document= Jsoup.connect(testUrl).timeout(30000).get();
+                        document = Jsoup.connect(testUrl).timeout(30000).get();
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
                 }
 
-                int TotalPage=0;
+                int TotalPage = 0;
                 try {
-                    String stotal=document.select("div.list-page span.total em").text().trim();
-                    if (stotal.equals("")){
-                        TotalPage =Integer.parseInt(document.select("div.sort-condi span.result em").text().trim())/50;
-                    }else {
-                        TotalPage =Integer.parseInt(stotal)/50;
+                    String stotal = document.select("div.list-page span.total em").text().trim();
+                    if (stotal.equals("")) {
+                        TotalPage = Integer.parseInt(document.select("div.sort-condi span.result em").text().trim()) / 50;
+                    } else {
+                        TotalPage = Integer.parseInt(stotal) / 50;
                     }
-                    if (TotalPage==0){
+                    if (TotalPage == 0) {
                         TotalPage++;
                     }
 
-                }catch (NumberFormatException e){
-                     System.out.println("还会进来？");
+                } catch (NumberFormatException e) {
+                    System.out.println("还会进来？");
                 }
 
-                System.out.println("testUrl="+testUrl);
+                System.out.println("testUrl=" + testUrl);
                 //System.out.println("我们爬"+TotalPage+"页");
 
-                for (int i=1;i<=TotalPage;i++){
-                    String thisUrl=communityUrl;
-                    if (TotalPage>1){
-                        thisUrl=AjkNewsTemplate.COMMUNITYURL2.getMessage();
+                for (int i = 1; i <= TotalPage; i++) {
+                    String thisUrl = communityUrl;
+                    if (TotalPage > 1) {
+                        thisUrl = AjkNewsTemplate.COMMUNITYURL2.getMessage();
                     }
 
-                    thisUrl=thisUrl.replace("%s",cityEntity.getCityFirst());
-                    thisUrl=thisUrl.replace("%d",districtEntity.getDistrictEname());
-                    if (thisUrl.contains("%n")){
-                        thisUrl=thisUrl.replace("%n",i+"");
+                    thisUrl = thisUrl.replace("%s", cityEntity.getCityFirst());
+                    thisUrl = thisUrl.replace("%d", districtEntity.getDistrictEname());
+                    if (thisUrl.contains("%n")) {
+                        thisUrl = thisUrl.replace("%n", i + "");
                     }
 
 
-                    System.out.println("thisUrl="+thisUrl);
+                    System.out.println("thisUrl=" + thisUrl);
                     //System.out.println("开始爬"+thisUrl+"里面的内容");
-                    craw(thisUrl,districtEntity.getDistrictId());
+                    craw(thisUrl, districtEntity.getDistrictId());
                 }
 
             }
-
-
         }
     }
 
@@ -168,8 +200,6 @@ public class CommunityCrawler {
             communityEntity=addPrice(communityEntity,e);
             repository.save(communityEntity);
         }
-
-
     }
 
 

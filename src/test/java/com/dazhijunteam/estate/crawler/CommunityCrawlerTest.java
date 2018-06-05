@@ -66,7 +66,7 @@ public class CommunityCrawlerTest {
 
     @Test
     public void crawone(){
-        new CommunityCrawler().craw("https://bj.fang.anjuke.com/loupan/fengtai/p1","12");
+        //new CommunityCrawler().craw("https://bj.fang.anjuke.com/loupan/fengtai/p1","12");
     }
 
     @Test

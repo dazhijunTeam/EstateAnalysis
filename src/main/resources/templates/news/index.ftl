@@ -25,7 +25,6 @@
             </ul>
         </div>
     </div>
-
     <div class="col-md-12 column">
             <#list newsEntities.getContent() as news>
                 <#if news_index%3==0>
@@ -63,14 +62,14 @@
             </li>
         <#else >
             <li>
-                <a href="/EstateAnalysis/news/index?cityId=${cityId}&page=${currentPage-1}">上一页</a>
+                <a href="/EstateAnalysis/news/idex?cityId=${cityId}&page=${currentPage-1}">上一页</a>
             </li>
         </#if>
         <#if currentPage-3 gt 1>
             <li>
                 <a href="/EstateAnalysis/news/index?cityId=${cityId}&page=1">1</a>
             </li>
-        <#if currentPage-4!=1>
+        <#if currentPage-4!=1>0
             <li class="disabled">
                 <a href="">...</a>
             </li>

@@ -14,4 +14,5 @@ public interface CityService {
     List<CityEntity> findAll();
 
     CityEntity save(CityEntity cityEntity);
+
 }

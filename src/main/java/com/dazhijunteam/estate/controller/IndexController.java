@@ -10,6 +10,6 @@ import java.util.List;
 public class IndexController {
     @GetMapping("/index")
     public ModelAndView index(){
-        return new ModelAndView("index/index");
+        return new ModelAndView("redirect:community/indexofcity");
     }
 }

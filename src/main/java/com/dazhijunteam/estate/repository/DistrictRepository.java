@@ -11,5 +11,5 @@ public interface DistrictRepository extends JpaRepository<DistrictEntity,String>
 
     List<DistrictEntity> getByDistrictCityid(String id);
 
-
+    DistrictEntity getByDistrictId(String districtId);
 }
