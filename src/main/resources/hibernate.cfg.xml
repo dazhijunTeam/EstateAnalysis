@@ -18,7 +18,7 @@
 
 
         <!-- hibernate.connection.url : 连接数据库的地址,路径 -->
-        <property name="hibernate.connection.url">jdbc:mysql://192.168.43.50:3306/EstateAnalysis</property>
+        <property name="hibernate.connection.url">jdbc:mysql://192.168.1.111:3306/EstateAnalysis</property>
 
 
         <!-------------------------------------------------------------------------------->
@@ -81,5 +81,9 @@
         <mapping resource="com/itheima/a_hello/User.hbm.xml"/>
         <mapping class="com.dazhijunteam.estate.dataobject.DistrictEntity"/>
         <mapping class="com.dazhijunteam.estate.dataobject.CommunityEntity"/>
+        <mapping class="com.dazhijunteam.estate.bean.HouseInfos"/>
+        <mapping class="com.dazhijunteam.estate.bean.HouseTypeInfos"/>
+        <mapping class="com.dazhijunteam.estate.bean.UserComment"/>
+        <mapping class="com.dazhijunteam.estate.dataobject.User"/>
     </session-factory>
 </hibernate-configuration>

@@ -14,4 +14,12 @@ public interface CommunityRepository extends JpaRepository<CommunityEntity,Strin
     Page<CommunityEntity> findByCommunityDistrictid(Pageable pageable,String districtid);
 
     List<CommunityEntity> findCommunityEntityByCommunityDistrictidInAndIsCheap(List<String> districtids,Byte ischeap);
+
+
+    @Override
+    CommunityEntity getOne(String s);
+
+    List<CommunityEntity> findByIsCheap(Byte b);
+    @Override
+    List<CommunityEntity> findAll();
 }

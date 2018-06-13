@@ -1,0 +1,65 @@
+.tag {
+    display: inline-block;
+    color: #999;
+    padding: 0 4px;
+    text-align: center;
+    border: 1px solid #ccc;
+    margin-right: 6px;
+    vertical-align: top;
+    border-radius: 2px;
+}
+.tag1 {
+    display: inline-block;
+    padding: 0 4px;
+    text-align: center;
+    border: 1px solid #ccc;
+    margin-right: 6px;
+    vertical-align: top;
+    border-radius: 2px;
+    color: #799374;
+    background: #f2f6ed;
+}
+.price {
+    font-size: 17px;
+    font-weight: bolder;
+    color: #337ab7;
+    height: 30px;
+    line-height: 30px;
+}
+.discout-mark {
+    position: absolute;
+    left: 20px;
+    top: 66px;
+    width: 60px;
+    height: 24px;
+    line-height: 24px;
+    background-color: #e56012;
+    color: #fff;
+    font-size: 14px;
+    border-radius: 0 0 2px 0;
+    text-align: center;
+    box-shadow: 0 2px 4px #000;
+}
+.tel{
+    height: 54px;
+    line-height: 54px;
+    color: #337ab7;
+    font-size: 35px;
+    font-weight: normal;
+}
+.detailbtn {
+    margin-top: -20px;
+    display: inline-block;
+    border: 0 none;
+    cursor: pointer;
+    vertical-align: middle;
+    border-radius: 3px;
+    color: #FFF;
+    overflow: hidden;
+    background: #337ab7;
+}
+.total-comment{
+    margin-top: 15px;
+    border-bottom: 1px dashed #e6e6e6;
+    padding-bottom: 15px;
+}

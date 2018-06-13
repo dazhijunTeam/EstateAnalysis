@@ -23,6 +23,11 @@ public class CommunityServiceImpl implements CommunityService{
     private DistrictService districtService;
 
     @Override
+    public CommunityEntity getOne(String communityid) {
+        return communityRepository.getOne(communityid);
+    }
+
+    @Override
     public Page<CommunityEntity> findByCommunityCityid(Pageable pageable,String cityid) {
         List<String> districtIds=districtService.getdistrictIdByCityId(cityid);
         Page<CommunityEntity> communityEntities=communityRepository.findCommunityEntityByCommunityDistrictidIn(pageable,districtIds);
@@ -44,5 +49,10 @@ public class CommunityServiceImpl implements CommunityService{
             unsortComm.add(communityEntities.get(i));
         }
         return unsortComm;
+    }
+
+    @Override
+    public List<CommunityEntity> findAll() {
+        return communityRepository.findAll();
     }
 }

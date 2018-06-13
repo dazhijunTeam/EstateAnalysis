@@ -1,5 +1,6 @@
 package com.dazhijunteam.estate.controller;
 
+import com.dazhijunteam.estate.constant.SessionConstant;
 import com.dazhijunteam.estate.dataobject.CityEntity;
 import com.dazhijunteam.estate.dataobject.CommunityEntity;
 import com.dazhijunteam.estate.dataobject.DistrictEntity;
@@ -7,22 +8,30 @@ import com.dazhijunteam.estate.dataobject.twoComm;
 import com.dazhijunteam.estate.service.CityService;
 import com.dazhijunteam.estate.service.CommunityService;
 import com.dazhijunteam.estate.service.DistrictService;
+import com.dazhijunteam.estate.util.CookiesUtil;
 import com.dazhijunteam.estate.util.CovertCommToList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 import java.util.Map;
 
 @Controller
 @RequestMapping("/community")
 public class CommunityController {
+
+    @Autowired
+    private StringRedisTemplate redisTemplate;
 
     @Autowired
     private CommunityService communityService;
@@ -38,6 +47,7 @@ public class CommunityController {
     public ModelAndView getListCommunityEntityofcity(@RequestParam(value = "cityId",defaultValue = "1") String cityId,
                                                @RequestParam(value = "page",defaultValue = "1") Integer page,
                                                @RequestParam(value = "size",defaultValue = "10") Integer size,
+                                               HttpServletRequest request,
                                                Map<String,Object> map){
         PageRequest pageRequest=new PageRequest(page-1,size);
         Page<CommunityEntity> communityEntityPage=communityService.findByCommunityCityid(pageRequest,cityId);
@@ -48,6 +58,9 @@ public class CommunityController {
         List<CommunityEntity> sortComm=communityEntityPage.getContent();
         List<twoComm> commAndUnsort= CovertCommToList.covertwithTwolist(sortComm,unSortComm);
 
+        //通过cookie获取username
+        String userName=CookiesUtil.getUserNameByRedisAndCookie(request,redisTemplate);
+
         map.put("commAndUnsort",commAndUnsort);
         map.put("districtEntities",districtEntities);
         map.put("currentDistrictId","0");
@@ -55,7 +68,7 @@ public class CommunityController {
         map.put("currentCityId",cityId);
         map.put("currentPage",page);//当前页数
         map.put("totalPage",communityEntityPage.getTotalPages());
-
+        map.put("userName", userName);
         return new ModelAndView("community/indexofcity");
     }
 
@@ -63,6 +76,7 @@ public class CommunityController {
     public ModelAndView getListCommunityEntityofdis(@RequestParam(value = "districtId",defaultValue = "1") String districtId,
                                                @RequestParam(value = "page",defaultValue = "1") Integer page,
                                                @RequestParam(value = "size",defaultValue = "10") Integer size,
+                                               HttpServletRequest request,
                                                Map<String,Object> map){
         PageRequest pageRequest=new PageRequest(page-1,size);
 
@@ -77,6 +91,9 @@ public class CommunityController {
         List<DistrictEntity> districtEntities=districtService.getByDistrictCityid(cityId);
         List<CityEntity> cityEntities=cityService.findAll();
 
+        //通过cookie获取username
+        String userName=CookiesUtil.getUserNameByRedisAndCookie(request,redisTemplate);
+
         map.put("commAndUnsort",commAndUnsort);
         map.put("districtEntities",districtEntities);
         map.put("currentDistrictId",districtId);
@@ -84,6 +101,7 @@ public class CommunityController {
         map.put("currentCityId",cityId);
         map.put("currentPage",page);//当前页数
         map.put("totalPage",communityEntityPage.getTotalPages());
+        map.put("userName", userName);
 
         return new ModelAndView("community/indexofcity");
     }
