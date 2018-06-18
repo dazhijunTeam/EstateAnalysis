@@ -8,15 +8,14 @@ import java.util.Objects;
 
 @Entity
 public class User {
-    @Id
     private String username;
     private String password;
     private String city;
     private Integer salary;
     private Integer hprice;
 
-    @Basic
-    @Column(name = "username", nullable = true, length = 30)
+    @Id
+    @Column(name = "username", nullable = false, length = 30)
     public String getUsername() {
         return username;
     }

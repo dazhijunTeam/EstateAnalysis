@@ -14,6 +14,11 @@ public class CityServiceImpl implements CityService{
     private CityRepository repository;
 
     @Override
+    public CityEntity findByCityName(String name) {
+        return repository.findByCityName(name);
+    }
+
+    @Override
     public CityEntity getByCityId(String s) {
         return repository.getByCityId(s);
     }

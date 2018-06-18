@@ -63,3 +63,96 @@
     border-bottom: 1px dashed #e6e6e6;
     padding-bottom: 15px;
 }
+.hxa{
+    outline: 0;
+    padding: 0 15px;
+    font-size: 20px;
+    zoom: 1;
+    white-space: nowrap;
+    text-decoration: none;
+}
+.hxsplit {
+    font-size: 0;
+    line-height: 0;
+    display: inline-block;
+    zoom: 1;
+    vertical-align: middle;
+    width: 0;
+    height: 18px;
+    overflow: hidden;
+    border-right: 1px solid #CCC;
+}
+.hx-nodata-mod {
+    margin: 100px 0 90px 0;
+    height: 100px;
+    line-height: 36px;
+    padding: 0 0 0 220px;
+    background: url(https://pages.anjukestatic.com/xinfang/img/afloupan/24/nodata_warning.png) 100px 10px no-repeat;
+}
+.hx-list{
+    width: 240px;
+    height: 310px;
+    float: left;
+    margin: 30px 20px 0;
+    list-style: none;
+}
+.hx-list img {
+    max-width: 220px;
+    vertical-align: middle;
+}
+.hx-list a {
+    width: 238px;
+    height: 238px;
+    line-height: 220px;
+    border: 1px solid #d9d9d9;
+    display: block;
+    text-align: center;
+    _font-size: 200px;
+    overflow: hidden;
+}
+.hx-list .type-name {
+    width: 100%;
+    height: 72px;
+    line-height: 21px;
+    text-align: left;
+}
+.hx-list .descrip {
+    color: #666;
+    font-size: 14px;
+    margin-top: 5px;
+    overflow: hidden;
+    height: 21px;
+}
+.hx-list .desc-txt {
+    font-size: 16px;
+    max-width: 154px;
+    _width: 154px;
+    height: 21px;
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    vertical-align: middle;
+}
+.hx-list .comm-stat {
+    display: inline-block;
+    color: #fff;
+    padding: 0 5px;
+    font-size: 14px;
+    font-weight: 400;
+    border-radius: 3px;
+    float: right;
+    margin-left: 4px;
+}
+/*待售*/
+.hx-list .dsale, .hx-list .sell-out {
+    background: #f0f4f8;
+    color: #8099af;
+}
+.hx-list .zsale {
+    background: #3cb950;
+}
+/*在售，主推*/
+.hx-list .hot-sale {
+    background: #ffa626;
+}

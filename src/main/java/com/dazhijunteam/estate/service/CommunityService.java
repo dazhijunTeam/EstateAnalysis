@@ -8,6 +8,8 @@ import org.springframework.data.domain.Pageable;
 import java.util.List;
 
 public interface CommunityService {
+
+
     //通过房产的id来查询
     CommunityEntity getOne(String communityid);
 
@@ -22,4 +24,6 @@ public interface CommunityService {
 
     //查找所有的房产信息
     public List<CommunityEntity> findAll();
+
+
 }

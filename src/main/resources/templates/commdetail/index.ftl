@@ -104,7 +104,12 @@
                                 </h4>
                             </div>
                             <div class="list-group-item">
-                                <strong class="tel">${communityEntity.getCommunityPhone()?substring(0,communityEntity.getCommunityPhone()?length-1)!"400-603-2266"}</strong>
+                                <#if communityEntity.getCommunityPhone()!="">
+                                <strong class="tel">${communityEntity.getCommunityPhone()?substring(0,communityEntity.getCommunityPhone()?length-1)}</strong>
+                                <#else >
+                                    <strong class="tel">400-603-2266</strong>
+                                </#if>
+
                                 <a class="detailbtn">免费通话</a>
                             </div>
                             <div class="list-group-item">

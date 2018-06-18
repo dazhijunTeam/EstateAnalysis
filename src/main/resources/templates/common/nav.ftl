@@ -3,7 +3,7 @@
     <h1>登录</h1>
 
     <p>用户登录：</p>
-    <form class="login-form clearfix" method="get" action="/EstateAnalysis/">
+    <form class="login-form clearfix" method="post" action="/EstateAnalysis/user/login">
         <div class="form-arrow"></div>
         <input name="username" type="text" placeholder="用户名：">
         <!--<input name="email" type="text" placeholder="邮箱：">-->
@@ -27,7 +27,7 @@
                             <input name="password1" type="password" placeholder="确认密码：">
                             <input name="city" type="text" placeholder="期待城市：">
                             <input name="salary" type="text" placeholder="个人薪资：">
-                            <input name="Hprice" type="text" placeholder="期待房价：">
+                            <input name="Hprice" type="text" placeholder="期待房产均价：">
                             <div class="clearfix"></div>
                             <input type="submit" name="type" class="button-blue reg" value="注册" data-action="regist">
                         </form>

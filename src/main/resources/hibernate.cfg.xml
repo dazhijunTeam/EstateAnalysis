@@ -18,7 +18,7 @@
 
 
         <!-- hibernate.connection.url : 连接数据库的地址,路径 -->
-        <property name="hibernate.connection.url">jdbc:mysql://192.168.1.111:3306/EstateAnalysis</property>
+        <property name="hibernate.connection.url">jdbc:mysql://192.168.1.109:3306/EstateAnalysis</property>
 
 
         <!-------------------------------------------------------------------------------->
