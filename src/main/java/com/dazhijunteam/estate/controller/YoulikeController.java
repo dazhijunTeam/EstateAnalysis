@@ -47,7 +47,7 @@ public class YoulikeController {
     @GetMapping("index")
     public ModelAndView index(Map<String,Object> map,
                               HttpServletRequest request,
-                              @RequestParam(value = "page",defaultValue = "2") Integer page,
+                              @RequestParam(value = "page",defaultValue = "1") Integer page,
                               @RequestParam(value = "size",defaultValue = "10") Integer size){
         String UserName=CookiesUtil.getUserNameByRedisAndCookie(request, redisTemplate);
         User user=userService.getOne(UserName);

@@ -26,7 +26,7 @@ public class MapperService {
         map.put("list",CityEntity);
         map.put("lowPrice",lowPrice);
         map.put("highPrice",highPrice);
-        map.put("lowTotalPrice",lowTotalPrice);
+        map.put("totalPrice",lowTotalPrice);
         PageHelper.startPage(page, size);
         List<CommunityEntity> communityEntities=mapper.findByYouLike(map);
         PageInfo<CommunityEntity> pageInfo=new PageInfo<>(communityEntities);

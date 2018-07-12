@@ -1,6 +1,5 @@
 package com.dazhijunteam.estate.enums;
 
-import lombok.Data;
 import lombok.Getter;
 
 @Getter

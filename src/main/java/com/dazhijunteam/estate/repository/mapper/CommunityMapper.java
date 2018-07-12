@@ -15,7 +15,7 @@ public interface CommunityMapper {
             "<foreach item='CityEntity' collection='list' open='(' close=')' separator=','>#{CityEntity}</foreach> " +
             "and (" +
             "(community_avprice&gt;#{lowPrice} AND community_avprice&lt;#{highPrice}) " +
-            "OR community_totalprice &lt; #{totalPrice}" +
+            "OR community_totalprice&lt;#{totalPrice}" +
             ")</script>")
     @Results({
             @Result(column = "community_id", property = "communityId"),

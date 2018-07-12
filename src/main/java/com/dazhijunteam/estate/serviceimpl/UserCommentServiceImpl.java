@@ -15,6 +15,7 @@ public class UserCommentServiceImpl implements UserCommentService{
     @Autowired
     private UserCommentRepository userCommentRepository;
 
+
     @Override
     public List<UserComment> getByHouseId(String communityid) {
         List<UserComment> commentList=userCommentRepository.getByHouseId(communityid);

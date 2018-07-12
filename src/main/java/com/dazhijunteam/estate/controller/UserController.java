@@ -78,7 +78,7 @@ public class UserController {
         String token= UUID.randomUUID().toString();
         Integer expir= SessionConstant.EXPIRE;
         String tokenName=String.format(SessionConstant.REDIS_TOKEN_PREFIX,token);
-        redisTemplate.opsForValue().set(tokenName,loginForm.getUsername(),expir*60*60, TimeUnit.MILLISECONDS);
+        redisTemplate.opsForValue().set(tokenName,loginForm.getUsername(),expir*60*60, TimeUnit.SECONDS);
 
         //设置token到浏览器
         System.out.println(loginForm.getUsername());

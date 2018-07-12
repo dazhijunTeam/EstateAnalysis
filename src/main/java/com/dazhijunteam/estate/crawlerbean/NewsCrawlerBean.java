@@ -2,7 +2,6 @@ package com.dazhijunteam.estate.crawlerbean;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.google.gson.annotations.SerializedName;
-import com.sun.xml.internal.ws.developer.Serialization;
 import lombok.Data;
 
 import java.sql.Timestamp;
