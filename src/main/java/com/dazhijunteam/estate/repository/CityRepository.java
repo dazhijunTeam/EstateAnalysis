@@ -11,7 +11,7 @@ import java.util.Optional;
 public interface CityRepository extends JpaRepository<CityEntity,String>{
     CityEntity getByCityId(String id);
 
-    CityEntity findByCityName(String name);
+    CityEntity findByCityName1(String name);
 
     @Override
     List<CityEntity> findAll();
